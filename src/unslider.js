@@ -22,7 +22,9 @@
 			fluid: f,     // is it a percentage width? (boolean)
 			complete: f,  // invoke after animation (function with argument)
 			items: '>ul', // slides container selector
-			item: '>li'   // slidable items selector
+			item: '>li',   // slidable items selector, 
+            setupOnly: f, //Should we start unslider immediately?
+            reverseHover: f  //Reverse the order of hover events: onhover starts,
 		};
 
 		_.init = function(el, o) {
@@ -62,12 +64,19 @@
 			//  Autoslide
 			setTimeout(function() {
 				if (o.delay | 0) {
-					_.play();
+
+                	if(o.setupOnly == f)
+						_.play();
 
 					if (o.pause) {
 						el.on('mouseover mouseout', function(e) {
-							_.stop();
-							e.type == 'mouseout' && _.play();
+							if(_.o.reverseHover == false){
+                                e.type == 'mouseover' && _.stop();
+                                e.type == 'mouseout' && _.play();
+                            }else{
+                                e.type == 'mouseover' && _.play();
+                                e.type == 'mouseout' && _.stop();
+                            }
 						});
 					};
 				};
