@@ -23,8 +23,8 @@
 			complete: f,  // invoke after animation (function with argument)
 			items: '>ul', // slides container selector
 			item: '>li',   // slidable items selector, 
-            setupOnly: f, //Should we start unslider immediately?
-            reverseHover: f  //Reverse the order of hover events: onhover starts,
+			setupOnly: f, //Should we start unslider immediately?
+			reverseHover: f  //Reverse the order of hover events: onhover starts,
 		};
 
 		_.init = function(el, o) {
@@ -65,18 +65,18 @@
 			setTimeout(function() {
 				if (o.delay | 0) {
 
-                	if(o.setupOnly == f)
+					if(o.setupOnly == f)
 						_.play();
 
 					if (o.pause) {
 						el.on('mouseover mouseout', function(e) {
 							if(_.o.reverseHover == false){
-                                e.type == 'mouseover' && _.stop();
-                                e.type == 'mouseout' && _.play();
-                            }else{
-                                e.type == 'mouseover' && _.play();
-                                e.type == 'mouseout' && _.stop();
-                            }
+								e.type == 'mouseover' && _.stop();
+								e.type == 'mouseout' && _.play();
+							}else{
+								e.type == 'mouseover' && _.play();
+								e.type == 'mouseout' && _.stop();
+							}
 						});
 					};
 				};
