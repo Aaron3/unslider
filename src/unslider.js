@@ -70,7 +70,7 @@
 
 					if (o.pause) {
 						el.on('mouseover mouseout', function(e) {
-							if(_.o.reverseHover == false){
+							if(_.o.reverseHover == f){
 								e.type == 'mouseover' && _.stop();
 								e.type == 'mouseout' && _.play();
 							}else{
