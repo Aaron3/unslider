@@ -20,6 +20,7 @@
 			prev: '←',    // text or html inside prev button (string)
 			next: '→',    // same as for prev option
 			fluid: f,     // is it a percentage width? (boolean)
+			onStart: f,  // invoke before animation (function with argument)
 			complete: f,  // invoke after animation (function with argument)
 			items: '>ul', // slides container selector
 			item: '>li'   // slidable items selector
@@ -142,6 +143,8 @@
 			if (!ul.queue('fx').length) {
 				//  Handle those pesky dots
 				el.find('.dot').eq(index).addClass('active').siblings().removeClass('active');
+
+				$.isFunction(o.onStart) && o.onStart(el, index);
 
 				el.animate(obj, speed) && ul.animate($.extend({left: '-' + index + '00%'}, obj), speed, function(data) {
 					_.i = index;
